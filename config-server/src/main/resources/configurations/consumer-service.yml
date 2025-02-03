@@ -1,0 +1,27 @@
+spring:
+  data:
+    mongodb:
+      username: hariharan        # MongoDB username
+      password: harianbu         # MongoDB password
+      host: localhost
+      port: 27017
+      database: dev-ms-consumer
+      authentication-database: admin
+
+server:
+  port: 8088
+
+application:
+  name: consumer-service
+
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: employeeGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.type.mapping: employeeDetails:com.hariSolution.consumer.EmployeeDetails
+        spring.json.trusted.packages: '*'
+
